@@ -136,6 +136,13 @@ describe Kansuji do
         should == "千二十万三百四"
       end
     end
+    context "call with string" do
+      it "should convert arabic to kansuji" do
+        pending
+        @src = "10000 USDは78690円58銭"
+        Kansuji.to_kansuji(@src).should == "10000 USDは七万八千六百九十円五十八銭"
+      end
+    end
   end
 
   describe ".normalize" do

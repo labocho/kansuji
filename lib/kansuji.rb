@@ -8,6 +8,7 @@ require "kansuji/version"
 module Kansuji
   class ParseError < StandardError; end
   autoload :Builder, "kansuji/builder"
+  autoload :CUI, "kansuji/cui"
   autoload :Parser, "kansuji/parser"
 
   POWER_OF_MAN = %w(万 億 兆 京 垓 𥝱 穣 溝 澗 正 載 極 恒河沙 阿僧祇 那由他 不可思議 無量大数)
