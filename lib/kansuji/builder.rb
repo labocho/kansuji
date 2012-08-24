@@ -35,39 +35,27 @@ module Kansuji
     def to_mixed_kansuji(number)
       return "〇" if number == 0
       kansuji = ""
-      INTEGER_TO_POWER_OF_MAN.each do |char, i|
-        four = number / i
-        number = number % i
-        next if four == 0
-        kansuji << replace_to_kansuji(four).rjust(4, "〇") + char
+      each_four_orders(number) do |four, char|
+        kansuji << replace_to_kansuji(four).rjust(4, "〇") + char.to_s
       end
-      kansuji << replace_to_kansuji(number).rjust(4, "〇") if number > 0 # 1-9999
       kansuji.gsub(/^〇+/, "")
     end
 
     def to_mixed_arabic_kansuji(number)
       return "0" if number == 0
       kansuji = ""
-      INTEGER_TO_POWER_OF_MAN.each do |char, i|
-        four = number / i
-        number = number % i
-        next if four == 0
-        kansuji << four.to_s.rjust(4, "0") + char
+      each_four_orders(number) do |four, char|
+        kansuji << four.to_s.rjust(4, "0") + char.to_s
       end
-      kansuji << number.to_s.rjust(4, "0") if number > 0 # 1-9999
       kansuji.gsub(/^0+/, "")
     end
 
     def to_traditional_kansuji(number)
       return "〇" if number == 0
       kansuji = ""
-      INTEGER_TO_POWER_OF_MAN.each do |char, i|
-        four = number / i
-        number = number % i
-        next if four == 0
-        kansuji << to_traditional_four_kansuji(four) + char
+      each_four_orders(number) do |four, char|
+        kansuji << to_traditional_four_kansuji(four) + char.to_s
       end
-      kansuji << to_traditional_four_kansuji(number) if number > 0 # 1-9999
       kansuji
     end
 
@@ -79,18 +67,29 @@ module Kansuji
       INTEGER_TO_POWER_OF_TEN.each do |char, i|
         k = number / i
         number = number % i
-
         case k
         when 0
           # ignore
         when 1
-          kansuji << char
+          kansuji << char # omit 一 for 千 / 百 / 十
         else
           kansuji << (replace_to_kansuji(k) + char)
         end
       end
       kansuji << replace_to_kansuji(number) if number > 0
       kansuji
+    end
+
+    # Split by 4 orders and call block with 4 order integer and power of man character.
+    # Power of man character of lowest four order is nil.
+    # each_four_orders(12_3456){|four, char| p [four, char]} # => [12, "万"], [3456, nil]
+    def each_four_orders(number)
+      (INTEGER_TO_POWER_OF_MAN + [[nil, 1]]).each do |char, i|
+        four = number / i
+        number = number % i
+        next if four == 0
+        yield four, char
+      end
     end
   end
 end
