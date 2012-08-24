@@ -53,6 +53,18 @@ describe Kansuji do
         @src = "一千二十万三百四"
         should == 1020_0304
       end
+      it "shoud ignore leading spaces" do
+        @src = " \t\n\r\n二百五十六"
+        should == 256
+      end
+      it "shoud ignore following characters" do
+        @src = "二百五十六人"
+        should == 256
+      end
+      it "shoud ignore following characters include kansuji" do
+        @src = "二百五十六円二十五銭"
+        should == 256
+      end
     end
   end
 

@@ -47,6 +47,7 @@ module Kansuji
     def to_i(kansuji)
       kansuji = normalize(kansuji) # 参 to 三
       kansuji = replace_arabic_to_kansuji(kansuji) # 3 or ３ to 三
+      kansuji.strip!
       case kansuji
       when /^[〇一二三四五六七八九]+$/
         replace_to_i(kansuji)
