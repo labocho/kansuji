@@ -7,9 +7,8 @@ module Kansuji
       "千" => 1000
     }
 
-    POWER_OF_MAN = %w(万 億 兆 京 垓 𥝱 穣 溝 澗 正 載 極 恒河沙 阿僧祇 那由他 不可思議 無量大数)
     POWER_OF_MAN_TO_INTEGER =
-      POWER_OF_MAN.each.with_index.inject({}){|table, (char, i)|
+      Kansuji::POWER_OF_MAN.each.with_index.inject({}){|table, (char, i)|
         table[char] = 10000 ** (i + 1)
         table
       }
