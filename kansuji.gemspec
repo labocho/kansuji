@@ -16,5 +16,4 @@ Gem::Specification.new do |gem|
   gem.version       = Kansuji::VERSION
   gem.add_development_dependency "rspec", "~> 2.11.0"
   gem.add_development_dependency "guard-rspec"
-  gem.add_development_dependency "ruby-debug19"
 end

@@ -1,6 +1,5 @@
 # encoding: UTF-8
 require "spec_helper"
-require "ruby-debug"
 
 describe Kansuji do
   describe ".to_i" do
