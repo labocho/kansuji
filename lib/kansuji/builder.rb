@@ -5,6 +5,7 @@ module Kansuji
       Kansuji::POWER_OF_MAN.each_with_index.map{|char, i|
         [char, 10000 ** (i + 1)]
       }.reverse
+
     INTEGER_TO_POWER_OF_TEN = [
       ["千", 1000],
       ["百", 100],
