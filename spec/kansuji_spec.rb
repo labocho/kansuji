@@ -93,6 +93,10 @@ describe Kansuji do
         @src = 10_2345_6789
         should == "一〇億二三四五万六七八九"
       end
+      it "should build '一〇億一'" do
+        @src = 10_0000_0001
+        should == "一〇億一"
+      end
       it "should ommit four orders" do
         @src = 1_0000_2345
         should == "一億二三四五"
@@ -104,9 +108,13 @@ describe Kansuji do
         @src = 10_2345_6789
         should == "10億2345万6789"
       end
+      it "should build '10億1" do
+        @src = 10_0000_0001
+        should == "10億1"
+      end
       it "should build max order" do
         @src = 1_2345_6789_0123_4567_8901_2345_6789_0123_4567_8901_2345_6789_0123_4567_8901_2345_6789
-        should == "1無量大数2345不可思議6789那由他0123阿僧祇4567恒河沙8901極2345載6789正0123澗4567溝8901穣2345𥝱6789垓0123京4567兆8901億2345万6789"
+        should == "1無量大数2345不可思議6789那由他123阿僧祇4567恒河沙8901極2345載6789正123澗4567溝8901穣2345𥝱6789垓123京4567兆8901億2345万6789"
       end
     end
     context "type: traditional" do

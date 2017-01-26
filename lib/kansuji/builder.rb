@@ -37,7 +37,7 @@ module Kansuji
       return "〇" if number == 0
       kansuji = ""
       each_four_orders(number) do |four, char|
-        kansuji << replace_to_kansuji(four).rjust(4, "〇") + char.to_s
+        kansuji << replace_to_kansuji(four) + char.to_s
       end
       kansuji.gsub(/^〇+/, "")
     end
@@ -46,7 +46,7 @@ module Kansuji
       return "0" if number == 0
       kansuji = ""
       each_four_orders(number) do |four, char|
-        kansuji << four.to_s.rjust(4, "0") + char.to_s
+        kansuji << four.to_s + char.to_s
       end
       kansuji.gsub(/^0+/, "")
     end
