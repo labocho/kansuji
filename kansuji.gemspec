@@ -4,8 +4,8 @@ require File.expand_path('../lib/kansuji/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["labocho"]
   gem.email         = ["labocho@penguinlab.jp"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{Convert numbers to/from Japanese Kansuji (number representation in Kanji)}
+  gem.summary       = %q{Convert numbers to/from Japanese Kansuji (number representation in Kanji)}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)
