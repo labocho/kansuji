@@ -25,6 +25,11 @@ module Kansuji
     Parser.to_i(kansuji)
   end
 
+  # Convert all kansuji to arabic in argument
+  def to_arabic(string_with_kansuji, type = nil)
+     Parser.to_arabic(string_with_kansuji, type)
+  end
+
   # Kansuji.normalize("廿壱萬") # => "二十一万"
   def normalize(kansuji)
     Parser.normalize(kansuji)

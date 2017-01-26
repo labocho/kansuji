@@ -57,6 +57,18 @@ module Kansuji
       end
     end
 
+    # Convert all kansuji to arabic in argument
+    def to_arabic(string_with_kansuji, type = nil)
+      string_with_kansuji.gsub(kansuji_regxep) do |matched|
+        case type
+        when :mixed_arabic
+          Kansuji.to_kansuji(to_i(matched), :mixed_arabic)
+        else
+          to_i(matched).to_s
+        end
+      end
+    end
+
     # normalize("廿壱萬") # => "二十一万"
     def normalize(kansuji)
       kansuji = kansuji.dup
@@ -145,6 +157,16 @@ module Kansuji
       # $~.captures == ["二", "千", "", "百", nil, nil, "三"]
       def traditional_four_regexp
         /(?:([一二三四五六七八九]?)(千))?(?:([二三四五六七八九]?)(百))?(?:([二三四五六七八九]?)(十))?([一二三四五六七八九])?/
+      end
+
+      def kansuji_regxep
+        @kansuji_regexp = begin
+          any_kansuji_char = (
+            "〇一二三四五六七八九十百千".chars.to_a +
+            POWER_OF_MAN
+          ).join("|")
+          Regexp.compile "(?:#{any_kansuji_char})+"
+        end
       end
     end
   end

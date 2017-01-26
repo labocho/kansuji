@@ -70,14 +70,12 @@ describe Kansuji do
 
   describe ".to_arabic" do
     it "should convert kansuji to arabic" do
-      pending
       @src = "10000 USDは七万八千六百九十円五十八銭"
       Kansuji.to_arabic(@src).should == "10000 USDは78690円58銭"
     end
     it "should convert kansuji to arabic" do
-      pending
       @src = "10000 USDは七万八千六百九十円五十八銭"
-      Kansuji.to_arabic(@src, :mixed).should == "10000 USDは7万8690円58銭"
+      Kansuji.to_arabic(@src, :mixed_arabic).should == "10000 USDは7万8690円58銭"
     end
   end
 
